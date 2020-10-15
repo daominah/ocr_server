@@ -21,10 +21,6 @@ func TestReadCaptcha(t *testing.T) {
 		{"test/img1.png", "B-Trees"},
 	} {
 		client := gosseract.NewClient()
-		if !true {
-			tessdataPrefix := "/go/src/github.com/tesseract-ocr/tessdata_best"
-			client.TessdataPrefix = &tessdataPrefix
-		}
 		client.Languages = []string{"eng"}
 		err := client.SetConfigFile("tesseract.cfg")
 		if err != nil {

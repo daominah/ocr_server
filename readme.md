@@ -11,5 +11,6 @@ Doc: [Tesseract ControlParams](https://tesseract-ocr.github.io/tessdoc/ControlPa
 
 ## Source
 
-* This project is forked from [otiai10/ocrserver](https://github.com/daominah/ocr_server)
+* This project is forked from [otiai10/ocrserver](https://github.com/otiai10/ocrserver)
+* Go wrap library: [otiai10/gosseract](https://github.com/otiai10/gosseract)
 * Origin Tesseract project in C++ [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
