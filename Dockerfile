@@ -27,6 +27,7 @@ COPY go.mod /go.mod
 COPY go.sum /go.sum
 RUN cd / && go mod download
 
+WORKDIR $GOPATH/src/app
 COPY . $GOPATH/src/app
 WORKDIR $GOPATH/src/app
 RUN go test -v -run=TestReadCaptcha
