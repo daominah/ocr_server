@@ -21,12 +21,15 @@ window.onload = () => {
     btnBase64: document.getElementById("by-base64"),
     cancel:    document.getElementById("cancel-input"),
     file:      document.getElementById("file"),
+
     // langs:     document.querySelector("input[name=langs]"),
-    // whitelist: document.querySelector("input[name=whitelist]"),
+    whitelist: document.querySelector("input[name=whitelist]"),
     // hocr:      document.querySelector("input[name=hocr]"),
+
     langs: "eng",
-    whitelist: "",
+    // whitelist: "",
     hocr: false,
+
     submit:    document.getElementById("submit"),
     loading:   document.querySelector("button#submit>span:first-child"),
     standby:   document.querySelector("button#submit>span:last-child"),
