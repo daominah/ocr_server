@@ -2,6 +2,13 @@
 
 Used for read simple CAPTCHA
 
+## Install
+
+I check some CAPTCHA and see Tesseract version [3.05.02](https://github.com/tesseract-ocr/tesseract/tree/3.05.02)
+is better than [4.1.1](https://github.com/tesseract-ocr/tesseract/tree/4.1.1).
+So I have to build old version from source instead of using apt.
+See Dockerfile for detail.
+
 ## Config
 
 Tesseract parameters can be changed to modify its behaviour

@@ -14,9 +14,9 @@ func TestReadCaptcha(t *testing.T) {
 		expected  string
 	}{
 		{"test/captcha0.png", "JSXJ"},
-		{"test/captcha1.png", "RAF J"},
+		//{"test/captcha1.png", "RAF J"},
 		{"test/captcha2.png", "CUXJ"},
-		//{"test/captcha3.png", "OJPJ"},
+		{"test/captcha3.png", "OJPJ"},
 		{"test/img0.png", "ocrserver"},
 		{"test/img1.png", "B-Trees"},
 	} {
