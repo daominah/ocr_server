@@ -26,7 +26,10 @@ func TestReadCaptcha(t *testing.T) {
 			client.TessdataPrefix = &tessdataPrefix
 		}
 		client.Languages = []string{"eng"}
-		client.SetConfigFile("/home/tungdt/go/src/github.com/daominah/ocr_server/tesseract.cfg")
+		err := client.SetConfigFile("tesseract.cfg")
+		if err != nil {
+			t.Fatal(err)
+		}
 		defer client.Close()
 
 		image, err := ioutil.ReadFile(test.imagePath)
