@@ -57,6 +57,7 @@ func Base64(w http.ResponseWriter, r *http.Request) {
 	client := gosseract.NewClient()
 	defer client.Close()
 
+	client.SetConfigFile("./tesseract.cfg")
 	client.Languages = []string{"eng"}
 	if body.Languages != "" {
 		client.Languages = strings.Split(body.Languages, ",")
@@ -74,6 +75,5 @@ func Base64(w http.ResponseWriter, r *http.Request) {
 
 	render.JSON(http.StatusOK, map[string]interface{}{
 		"result":  strings.Trim(text, body.Trim),
-		"version": version,
 	})
 }

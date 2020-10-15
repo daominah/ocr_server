@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/otiai10/marmoset"
+	"strings"
 
-	"github.com/otiai10/ocrserver/controllers"
-	"github.com/otiai10/ocrserver/filters"
+	"github.com/daominah/ocr_server/controllers"
+	"github.com/daominah/ocr_server/filters"
+	"github.com/otiai10/marmoset"
 )
 
 var logger *log.Logger
@@ -32,10 +33,14 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		logger.Fatalln("Required env `PORT` is not specified.")
+		logger.Printf("env `PORT` undefined, listen on default :35735\n")
+		port = ":35735"
 	}
-	logger.Printf("listening on port %s", port)
-	if err := http.ListenAndServe(":"+port, r); err != nil {
+	if !strings.Contains(port, ":") {
+		port = ":" + port
+	}
+	logger.Printf("listening on port http://127.0.0.1%s", port)
+	if err := http.ListenAndServe(port, r); err != nil {
 		logger.Println(err)
 	}
 }

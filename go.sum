@@ -2,8 +2,6 @@ github.com/otiai10/curr v0.0.0-20150429015615-9b4961190c95/go.mod h1:9qAhocn7zKJ
 github.com/otiai10/curr v1.0.0 h1:TJIWdbX0B+kpNagQrjgq8bCMrbhiuX73M2XwgtDMoOI=
 github.com/otiai10/curr v1.0.0/go.mod h1:LskTG5wDwr8Rs+nNQ+1LlxRjAtTZZjtJW4rMXl6j4vs=
 github.com/otiai10/gosseract/v2 v2.2.4 h1:h/PV+oJqke8q2Ccw9bjpMBWfd7N2vtGDCUcihZj3nRo=
-github.com/otiai10/gosseract/v2 v2.2.4+incompatible h1:mNlXWElV6XodjCi/KtHD1E0dOZaTHEe5Dp0ZXGFi5jo=
-github.com/otiai10/gosseract/v2 v2.2.4+incompatible/go.mod h1:ahOp/kHojnOMGv1RaUnR0jwY5JVa6BYKhYAS8nbMLSo=
 github.com/otiai10/gosseract/v2 v2.2.4/go.mod h1:ahOp/kHojnOMGv1RaUnR0jwY5JVa6BYKhYAS8nbMLSo=
 github.com/otiai10/marmoset v0.4.0 h1:Hg59lQI7qQowBEdsAJ/+VDTEospTBzXX/A1Gsw4mlvA=
 github.com/otiai10/marmoset v0.4.0/go.mod h1:t2q6dXWZ9YcFdRREDApX4bCmfQnL3isJ2dgl8ychlXg=

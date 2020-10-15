@@ -75,6 +75,5 @@ func FileUpload(w http.ResponseWriter, r *http.Request) {
 
 	render.JSON(http.StatusOK, map[string]interface{}{
 		"result":  strings.Trim(out, r.FormValue("trim")),
-		"version": version,
 	})
 }

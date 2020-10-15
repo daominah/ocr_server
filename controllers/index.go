@@ -9,6 +9,6 @@ import (
 // Index ...
 func Index(w http.ResponseWriter, r *http.Request) {
 	marmoset.Render(w).HTML("index", map[string]interface{}{
-		"AppName": "ocrserver",
+		"AppName": "Optical Character Recognition server",
 	})
 }
