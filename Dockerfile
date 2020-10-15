@@ -1,25 +1,20 @@
-FROM golang:1.12
-ENV GO111MODULE=on
+FROM golang:1.14.9
 
-LABEL maintainer="otiai10 <otiai10@gmail.com>"
+RUN cat /etc/os-release
 
-RUN apt-get -qq update \
-  && apt-get install -y \
-    libleptonica-dev \
-    libtesseract-dev \
-    tesseract-ocr
+RUN apt-get -qy update
+RUN apt-get install -qy libleptonica-dev libtesseract-dev tesseract-ocr
 
 # Load languages
-RUN apt-get install -y \
-  tesseract-ocr-jpn
+RUN apt-get install -y tesseract-ocr-eng tesseract-ocr-vie
 
-ADD . $GOPATH/src/github.com/otiai10/ocrserver
-WORKDIR $GOPATH/src/github.com/otiai10/ocrserver
-RUN go get ./...
-RUN go test -v github.com/otiai10/gosseract
+COPY go.mod /go.mod
+COPY go.sum /go.sum
+RUN cd / && go mod download
 
-ARG LOAD_LANG=
-RUN if [ -n "${LOAD_LANG}" ]; then apt-get install -y tesseract-ocr-${LOAD_LANG}; fi
+COPY . $GOPATH/src/app
+WORKDIR $GOPATH/src/app
+RUN go build -o ocr_server
 
-ENV PORT=8080
-CMD $GOPATH/bin/ocrserver
+ENV PORT=35735
+CMD $GOPATH/src/app/ocr_server
