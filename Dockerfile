@@ -6,11 +6,12 @@ RUN apt-get -qy update
 # install tesseract
 
 RUN apt-get install -qy libleptonica-dev libtesseract-dev
-RUN cd /opt && git clone https://github.com/tesseract-ocr/tesseract
-WORKDIR /opt/tesseract
-RUN git reset --hard 3.05.02
 RUN apt-get install -qy libtool m4 automake cmake pkg-config
 RUN apt-get install -qy libicu-dev libpango1.0-dev libcairo-dev
+
+RUN cd /opt && git clone https://github.com/tesseract-ocr/tesseract
+WORKDIR /opt/tesseract
+RUN git reset --hard 4.1.1
 RUN ./autogen.sh &&\
     ./configure --enable-debug LDFLAGS="-L/usr/local/lib" CFLAGS="-I/usr/local/include"
 RUN make -j 8
@@ -18,8 +19,9 @@ RUN make install && ldconfig
 RUN tesseract --version
 
 ENV TESSDATA_PREFIX=/usr/local/share/tessdata
-RUN cd ${TESSDATA_PREFIX} &&\
-    wget -q https://github.com/tesseract-ocr/tessdata/raw/3.04.00/eng.traineddata
+WORKDIR ${TESSDATA_PREFIX}
+RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/eng.traineddata
+RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/vie.traineddata
 
 # build this app
 

@@ -10,21 +10,25 @@ import (
 
 func TestReadCaptcha(t *testing.T) {
 	for _, test := range []struct {
-		imagePath string
-		expected  string
+		imagePath  string
+		expected   string
+		limitChars string
 	}{
-		{"test/captcha0.png", "JSXJ"},
-		//{"test/captcha1.png", "RAF J"},
-		{"test/captcha2.png", "CUXJ"},
-		{"test/captcha3.png", "OJPJ"},
-		{"test/img0.png", "ocrserver"},
-		{"test/img1.png", "B-Trees"},
+		{"test/captcha0.png", "JSXJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{"test/captcha1.png", "RAFJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{"test/captcha2.png", "CUXJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{"test/captcha3.png", "OJPJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{"test/img0.png", "ocrserver", ""},
+		{"test/img1.png", "B-Trees", ""},
 	} {
 		client := gosseract.NewClient()
 		client.Languages = []string{"eng"}
 		err := client.SetConfigFile("tesseract.cfg")
 		if err != nil {
 			t.Fatal(err)
+		}
+		if test.limitChars != "" {
+			client.SetWhitelist(test.limitChars)
 		}
 		defer client.Close()
 
