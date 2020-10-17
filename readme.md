@@ -2,6 +2,21 @@
 
 Used for read simple CAPTCHA
 
+## API
+
+### [/base64](http://127.0.0.1:35735/base64) POST  
+
+Example body:
+
+````
+{
+    "base64": "iVBORw0KGgoAAAANSUhEUgAAABYAAAAkCAMAAAC62DqvAAAAP1BMVEUAAAAkJSgjKCgoKCglJSgjJSckJSgjJSkkJCYnJycnJycqKiokJSgjJSckJSgkJCclJSglJSklJSwaGhokJSjbbGjNAAAAFHRSTlMA8joT0HDMil0hGgbVtaWVUkQpCmqOj4cAAABQSURBVCjP5cg3DoAwEATAdcSBjP//VtCVvkWixlMOPqopFL0utmayWt8ek15puibTtT/cGtki0UWQnl3Xxcj7/u2gf/EPoL+B/gHlXJcdb24oNg3pSN9UAQAAAABJRU5ErkJggg==",
+    "whitelist": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+}
+````
+
+base64 field can have prefix `data:image/png;base64,` 
+
 ## Install
 
 I check some CAPTCHA and see Tesseract version [3.05.02](https://github.com/tesseract-ocr/tesseract/tree/3.05.02)
