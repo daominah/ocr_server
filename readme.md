@@ -1,6 +1,6 @@
 # OCR server
 
-Used for read simple CAPTCHA
+Used for reading simple CAPTCHA. Powered by Tesseract 4.1.1 
 
 ## API
 
