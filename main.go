@@ -5,11 +5,11 @@ import (
 	"log"
 	"net/http"
 	"os"
-
 	"strings"
 
 	"github.com/daominah/ocr_server/controllers"
 	"github.com/daominah/ocr_server/filters"
+	mylog "github.com/mywrap/log"
 	"github.com/otiai10/marmoset"
 )
 
@@ -33,14 +33,14 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		logger.Printf("env `PORT` undefined, listen on default :35735\n")
+		mylog.Printf("env `PORT` undefined, listen on default :35735\n")
 		port = ":35735"
 	}
 	if !strings.Contains(port, ":") {
 		port = ":" + port
 	}
-	logger.Printf("listening on port http://127.0.0.1%s", port)
+	mylog.Printf("listening on port http://127.0.0.1%s", port)
 	if err := http.ListenAndServe(port, r); err != nil {
-		logger.Println(err)
+		mylog.Println(err)
 	}
 }

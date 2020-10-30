@@ -10,6 +10,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/mywrap/gofast"
+	"github.com/mywrap/log"
 	"github.com/otiai10/gosseract/v2"
 	"github.com/otiai10/marmoset"
 )
@@ -56,8 +58,10 @@ func Base64(w http.ResponseWriter, r *http.Request) {
 
 	client := gosseract.NewClient()
 	defer client.Close()
-
-	client.SetConfigFile("./tesseract.cfg")
+	err = client.SetConfigFile("./tesseract.cfg")
+	if err != nil {
+		log.Printf("error tesseract SetConfigFile: %v", err)
+	}
 	client.Languages = []string{"eng"}
 	if body.Languages != "" {
 		client.Languages = strings.Split(body.Languages, ",")
@@ -73,7 +77,8 @@ func Base64(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	render.JSON(http.StatusOK, map[string]interface{}{
-		"result":  strings.Trim(text, body.Trim),
-	})
+	ret := strings.Trim(text, body.Trim)
+	log.Debugf("response of base64ed [%.1f kB, %v]: %v", float64(len(b))/1024,
+		body.Base64[:gofast.MinInts(32, len(body.Base64))], ret)
+	render.JSON(http.StatusOK, map[string]interface{}{"result": ret})
 }
