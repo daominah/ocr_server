@@ -11,21 +11,34 @@ import (
 func TestReadCaptcha(t *testing.T) {
 	for _, test := range []struct {
 		imagePath  string
-		expected   string
 		limitChars string
+		language   string // default eng
+		expected   string
 	}{
-		{"test/captcha0.png", "JSXJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
-		{"test/captcha1.png", "RAFJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
-		{"test/captcha2.png", "CUXJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
-		{"test/captcha3.png", "OJPJ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
-		{"test/img0.png", "ocrserver", ""},
-		{"test/img1.png", "B-Trees", ""},
+		{imagePath: "test/captcha0.png", expected: "JSXJ",
+			limitChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{imagePath: "test/captcha1.png", expected: "RAFJ",
+			limitChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{imagePath: "test/captcha2.png", expected: "CUXJ",
+			limitChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{imagePath: "test/captcha3.png", expected: "OJPJ",
+			limitChars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+		{imagePath: "test/img0.png", expected: "ocrserver"},
+		{imagePath: "test/img1.png", expected: "B-Trees"},
+		{imagePath: "test/vie0.png", expected: "Đào Thanh Tùng", language: "vie"},
+		{imagePath: "test/vie1.png", expected: "Đào Thị Lán", language: "vie"},
+		{imagePath: "test/chi0.png", expected: "纤 扬", language: "chi_sim"},
+		{imagePath: "test/chi1.png", expected: "鱼", language: "chi_sim"},
+		{imagePath: "test/chi2.png", expected: "松", language: "chi_sim"},
 	} {
 		client := gosseract.NewClient()
 		client.Languages = []string{"eng"}
 		err := client.SetConfigFile("tesseract.cfg")
 		if err != nil {
 			t.Fatal(err)
+		}
+		if test.language != "" {
+			client.Languages = []string{test.language}
 		}
 		if test.limitChars != "" {
 			client.SetWhitelist(test.limitChars)
