@@ -22,12 +22,9 @@ window.onload = () => {
     cancel:    document.getElementById("cancel-input"),
     file:      document.getElementById("file"),
 
-    // langs:     document.querySelector("input[name=langs]"),
+    langs:     document.querySelector("input[name=langs]"),
     whitelist: document.querySelector("input[name=whitelist]"),
     // hocr:      document.querySelector("input[name=hocr]"),
-
-    langs: "eng",
-    // whitelist: "",
     hocr: false,
 
     submit:    document.getElementById("submit"),
@@ -55,11 +52,12 @@ window.onload = () => {
     ui.start();
     const req = generateRequest();
     if (!req) return ui.finish();
+    console.log(`${(new Date().toISOString())} doing POST req ${req.path}`);
     http.post(req.path, req.data).then(xhr => {
       ui.output.innerText = `${xhr.status} ${xhr.statusText}\n-----\n${xhr.response}`;
       ui.finish();
     }).catch(() => ui.finish());
-  })
+  });
 
   var generateRequest = () => {
     var req = {path: "", data: null};

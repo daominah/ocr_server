@@ -61,41 +61,26 @@
           <div class="field">
               <label class="label">Char Whitelist</label>
               <div class="control">
-                  <input class="input" type="text" name="whitelist" placeholder="abc012_-/">
+                  <input class="input" type="text" name="whitelist"
+                         placeholder="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789">
               </div>
-              <p class="help">You can specify strict chars to be detected,
-                  example ABCDEFGHIJKLMNOPQRSTUVWXYZ
-              </p>
+              <p class="help">Optional target chars set:</p>
+              <p class="help">* 0123456789</p>
+              <p class="help">* ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+              <p class="help">* abcdefghijklmnopqrstuvwxyz</p>
           </div>
-
-        <div class="column" style="display: none;">
-          <p class="title">Options</p>
-          <p class="subtitle">Optional flags</p>
 
           <div class="field">
             <label class="label">Languages</label>
             <div class="control">
-              <input class="input" type="text" name="langs" placeholder="eng,jpn">
+              <input class="input" type="text" name="langs"
+                     placeholder="vie,chi_sim">
             </div>
-            <p class="help">Comma serapated language codes</p>
+            <p class="help">Optional target language (default eng):</p>
+            <p class="help">* vie</p>
+            <p class="help">* chi_sim</p>
           </div>
 
-          <div class="field">
-            <label class="label">Char Whitelist</label>
-            <div class="control">
-              <input class="input" type="text" name="whitelist" placeholder="abc012_-/">
-            </div>
-            <p class="help">You can specify strict chars to be detected</p>
-          </div>
-
-          <div class="field">
-            <lable class="label">Use hOCR</lable>
-            <label class="checkbox">
-              <input type="checkbox" name="hocr"> More about hOCR → <a href="https://en.wikipedia.org/wiki/HOCR">https://en.wikipedia.org/wiki/HOCR</a>
-            </label>
-          </div>
-
-        </div>
       </div>
 
       <div class="columns">
