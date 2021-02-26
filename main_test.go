@@ -30,6 +30,9 @@ func TestReadCaptcha(t *testing.T) {
 		{imagePath: "test/chi0.png", expected: "纤 扬", language: "chi_sim"},
 		{imagePath: "test/chi1.png", expected: "鱼", language: "chi_sim"},
 		{imagePath: "test/chi2.png", expected: "松", language: "chi_sim"},
+		{imagePath: "test/dict0.jpg", expected: "Sài Sơn, Quốc Oai, Hà Nội", language: "vie"},
+		{imagePath: "test/dict1.jpg", expected: "ĐÀO THANH TÙNG", language: "vie",
+			limitChars: " AÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÈÉẸẺẼÊẾỀỂỄỆFGHIÌÍĨỈỊJKLMNOÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢPQRSTUÙÚŨỤỦƯỨỪỬỮỰVWXYÝỲỴỶỸZ"},
 	} {
 		client := gosseract.NewClient()
 		client.Languages = []string{"eng"}

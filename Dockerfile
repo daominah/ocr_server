@@ -19,11 +19,11 @@ RUN make install && ldconfig
 RUN tesseract --version
 
 ENV TESSDATA_PREFIX=/usr/local/share/tessdata
+ENV TESSDATA_REPO=https://github.com/tesseract-ocr/tessdata_best
 WORKDIR ${TESSDATA_PREFIX}
-RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/eng.traineddata
-RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/vie.traineddata
-RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/chi_sim.traineddata
-RUN wget -q https://github.com/tesseract-ocr/tessdata/raw/4.0.0/chi_tra.traineddata
+RUN wget -q ${TESSDATA_REPO}/raw/4.1.0/eng.traineddata
+RUN wget -q ${TESSDATA_REPO}/raw/4.1.0/vie.traineddata
+RUN wget -q ${TESSDATA_REPO}/raw/4.1.0/chi_sim.traineddata
 
 # build this app
 

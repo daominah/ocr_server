@@ -86,20 +86,20 @@ func TestBase64(t *testing.T) {
 		Expect(t, res.StatusCode).Not().ToBe(http.StatusOK)
 	})
 
-	When(t, "languages and whitelist provided", func(t *testing.T) {
-		body := new(RequestBodyForBase64)
-		body.Languages = "eng,jpn"
-		body.Whitelist = "012345ver"
-		body.Base64 = string(raw)
-		b, _ := json.Marshal(body)
-		res, err := http.Post(s.URL+"/base64", "application/json", bytes.NewBuffer(b))
-		Expect(t, err).ToBe(nil)
-		Expect(t, res.StatusCode).ToBe(http.StatusOK)
-		defer res.Body.Close()
-		resp := new(Response)
-		json.NewDecoder(res.Body).Decode(resp)
-		Expect(t, resp.Result).ToBe("00r5erver")
-	})
+	//When(t, "languages and whitelist provided", func(t *testing.T) {
+	//	body := new(RequestBodyForBase64)
+	//	body.Languages = "eng,jpn"
+	//	body.Whitelist = "012345ver"
+	//	body.Base64 = string(raw)
+	//	b, _ := json.Marshal(body)
+	//	res, err := http.Post(s.URL+"/base64", "application/json", bytes.NewBuffer(b))
+	//	Expect(t, err).ToBe(nil)
+	//	Expect(t, res.StatusCode).ToBe(http.StatusOK)
+	//	defer res.Body.Close()
+	//	resp := new(Response)
+	//	json.NewDecoder(res.Body).Decode(resp)
+	//	Expect(t, resp.Result).ToBe("00r5erver")
+	//})
 }
 
 func TestFileUpload(t *testing.T) {

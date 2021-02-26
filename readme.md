@@ -36,7 +36,7 @@ docker run -dit --restart always --name=ocr_server -p=35735:35735 daominah/ocr_s
 Tesseract parameters can be changed to modify its behaviour
 in [tesseract.cfg](./tesseract.cfg)
 
-Doc: [Tesseract ControlParams](https://tesseract-ocr.github.io/tessdoc/ControlParams.html)
+Doc: [Tesseract improve quality](https://github.com/tesseract-ocr/tessdoc/blob/master/ImproveQuality.md)
 
 ## Source
 
