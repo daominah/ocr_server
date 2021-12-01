@@ -44,7 +44,7 @@ window.onload = () => {
   });
   ui.btnFile.addEventListener("click", () => ui.file.click());
   ui.btnBase64.addEventListener("click", () => {
-    const uri = window.prompt("Please paste your base64 image URI");
+    const uri = window.prompt('data:image/png;base64,');
     if (uri) { ui.clear(); ui.show(uri); }
   });
   ui.cancel.addEventListener("click", () => ui.clear());
