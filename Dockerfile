@@ -1,6 +1,7 @@
 FROM golang:1.14.9
 
 RUN cat /etc/os-release
+# Output: Debian GNU/Linux 10 (buster)
 RUN apt-get -qy update
 
 # install tesseract
