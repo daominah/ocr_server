@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" />
-  <link rel="stylesheet" href="/assets/css/index.css" />
-  <script type="text/javascript" src="/assets/js/index.js"></script>
+  <link rel="stylesheet" href="index.css" />
+  <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
               Graphical client for an <b><a href="https://github.com/daominah/ocr_server">OCR server</a></b>
             </p>
             <p class="subtitle">
-              (using <a href="https://github.com/otiai10/gosseract">Go wrapper</a> of <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>)
+              (using <a href="https://github.com/otiai10/gosseract">a Go wrapper</a> of <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a> version <span id="tesseract-version"></span>)
           </div>
         </div>
       </div>
@@ -57,11 +57,9 @@
               <label class="label">Languages</label>
               <div class="control">
                   <input class="input" type="text" name="langs"
-                         placeholder="eng">
+                         placeholder="">
               </div>
-              <p class="help">Optional target language (default eng):</p>
-              <p class="help">* vie</p>
-              <p class="help">* chi_sim</p>
+              <p class="help">Available languages: <span id="langs-help">loading…</span></p>
           </div>
 
           <div class="field">

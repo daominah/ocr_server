@@ -36,6 +36,21 @@ window.onload = () => {
     finish:    () => { ui.loading.style.display = "none"; ui.standby.style.display = "block"; ui.submit.removeAttribute("disabled"); },
   };
 
+  fetch("/api/status")
+    .then(r => r.json())
+    .then(data => {
+      const langs = data.tesseract_languages;
+      if (Array.isArray(langs)) {
+        document.getElementById("langs-help").textContent = langs.join(", ");
+      }
+      if (data.tesseract_version) {
+        document.getElementById("tesseract-version").textContent = data.tesseract_version;
+      }
+    })
+    .catch(() => {
+      document.getElementById("langs-help").textContent = "unavailable";
+    });
+
   ui.file.addEventListener("change", ev => {
     if (!ev.target.files || !ev.target.files.length) return null;
     const r = new FileReader();
@@ -62,14 +77,14 @@ window.onload = () => {
   var generateRequest = () => {
     var req = {path: "", data: null};
     if (ui.file.files && ui.file.files.length != 0) {
-      req.path = "/file";
+      req.path = "/api/file";
       req.data = new FormData();
       if (ui.langs.value) req.data.append("languages", ui.langs.value);
       if (ui.whitelist.value) req.data.append("whitelist", ui.whitelist.value);
       if (ui.hocr.checked) req.data.append("format", "hocr");
       req.data.append("file", ui.file.files[0]);
     } else if (/^data:.+/.test(ui.image.src)) {
-      req.path = "/base64";
+      req.path = "/api/base64";
       var data = {base64: ui.image.src};
       if (ui.langs.value) data["languages"] = ui.langs.value;
       if (ui.whitelist.value) data["whitelist"] = ui.whitelist.value;
