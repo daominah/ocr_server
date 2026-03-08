@@ -11,7 +11,8 @@ import (
 
 // cfgFile disables Tesseract's language model penalties, suitable for
 // captcha-like images where dictionary constraints hurt accuracy.
-const cfgFile = "tesseract.cfg"
+// This file path is absolute path, work in the Docker container.
+const cfgFile = "/tesseract.cfg"
 
 func newClient(imageBytes []byte, languages []string, whitelist string) (*gosseract.Client, error) {
 	client := gosseract.NewClient()
@@ -53,6 +54,24 @@ func RecognizeHOCR(imageBytes []byte, languages []string, whitelist string) (str
 	}
 	defer client.Close()
 	return client.HOCRText()
+}
+
+// Params holds OCR options shared across handlers.
+type Params struct {
+	// Languages is a comma-separated list of Tesseract language codes
+	// (e.g. "eng", "vie", "chi_sim"). When empty, defaults to "eng"
+	// with captcha-optimized config (no dictionary penalties).
+	Languages string
+	// Whitelist limits recognized characters to this set
+	// (e.g. "abcdefghijklmnopqrstuvwxyz0123456789").
+	Whitelist string
+	// ErodeRadius thins bold characters by removing foreground pixels
+	// near edges, helping separate overlapping glyphs in captcha images.
+	// 0 means no erosion. Typical values: 1-3.
+	ErodeRadius int
+	// Format selects the output format: "" for plain text, "hocr" for
+	// hOCR (HTML with bounding boxes and confidence scores).
+	Format string
 }
 
 // Version returns the installed Tesseract version string.

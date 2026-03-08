@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	indexTmpl  *template.Template
+	indexTmpl    *template.Template
 	staticServer http.Handler
 )
 
@@ -38,7 +38,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func Status(w http.ResponseWriter, r *http.Request) {
+func StatusHandler(w http.ResponseWriter, r *http.Request) {
 	langs, err := gosseract.GetAvailableLanguages()
 	if err != nil {
 		writeError(w, http.StatusInternalServerError, err)

@@ -3,6 +3,7 @@ package ocr
 import (
 	"os"
 	"path/filepath"
+	"strconv"
 	"testing"
 )
 
@@ -53,9 +54,13 @@ func TestRecognize(t *testing.T) {
 }
 
 // TestRecognizeOverlapChars do OCR for captcha images with overlapping characters.
-// To run this test, inside the container of Docker build stage, run:
-// go test -v ./pkg/driver/ocr/ -run=TestRecognizeOverlapChars
+// Set ERODE_RADIUS env var to test with erosion, typically 1, 2 or 3.
+//
+//	ERODE_RADIUS=1 go test -v ./pkg/driver/ocr/ -run=TestRecognizeOverlapChars
 func TestRecognizeOverlapChars(t *testing.T) {
+	erodeRadius, _ := strconv.Atoi(os.Getenv("ERODE_RADIUS"))
+	t.Logf("ERODE_RADIUS=%d", erodeRadius)
+
 	paths, err := filepath.Glob("testdata/overlap/*.png")
 	if err != nil {
 		t.Fatal(err)
@@ -64,6 +69,13 @@ func TestRecognizeOverlapChars(t *testing.T) {
 		imageBytes, err := os.ReadFile(p)
 		if err != nil {
 			t.Fatal(err)
+		}
+		if erodeRadius > 0 {
+			imageBytes, err = ErodeImage(imageBytes, erodeRadius)
+			if err != nil {
+				t.Errorf("%v erode: %v", p, err)
+				continue
+			}
 		}
 		text, err := Recognize(imageBytes, nil, "")
 		if err != nil {

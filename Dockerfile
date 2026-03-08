@@ -36,6 +36,7 @@ COPY . $GOPATH/src/app
 # Verify OCR accuracy on standard captcha/language samples; must pass.
 RUN go test -v ./pkg/driver/ocr/ -run=TestRecognize
 
+RUN cp tesseract.cfg /tesseract.cfg
 RUN go build -o ocr_server ./cmd/ocr-server/
 
 # ---- final stage ----
